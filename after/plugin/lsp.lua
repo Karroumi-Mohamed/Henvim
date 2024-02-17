@@ -5,8 +5,15 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
-})
+  'tailwindcss',
+  -- for react, html, tsx, tsx html tags
+  'html',
+  -- react tags inside tsx
+  'biome',
+  "vtsls",
+  -- react, jsx, tsx
 
+})
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
