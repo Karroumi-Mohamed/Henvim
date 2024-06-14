@@ -18,6 +18,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
     'tsserver',
+    'clangd',
     'rust_analyzer',
     'tailwindcss',
     -- for react, html, tsx, tsx html tags
