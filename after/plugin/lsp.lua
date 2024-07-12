@@ -1,6 +1,7 @@
 local lsp = require("lsp-zero")
 local lspconfig = require("lspconfig")
 lspconfig.clangd.setup({})
+lspconfig.lua_ls.setup({})
 lspconfig.gleam.setup({
     cmd = { "gleam", "lsp" },
     filetypes = { "gleam" },
