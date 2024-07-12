@@ -1,5 +1,6 @@
 local lsp = require("lsp-zero")
 local lspconfig = require("lspconfig")
+lspconfig.clangd.setup({})
 lspconfig.gleam.setup({
     cmd = { "gleam", "lsp" },
     filetypes = { "gleam" },
@@ -18,8 +19,6 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
     'tsserver',
-    'clangd',
-    'rust_analyzer',
     'tailwindcss',
     -- for react, html, tsx, tsx html tags
     'html',
