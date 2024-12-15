@@ -50,3 +50,8 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+-- i want a remap for C-w j and C-w k and C-w h and C-w l to move between windows when i do leader+wj or leader+wk or leader+wh or leader+wl
+vim.keymap.set("n", "<leader>wj", "<C-w>j")
+vim.keymap.set("n", "<leader>wk", "<C-w>k")
+vim.keymap.set("n", "<leader>wh", "<C-w>h")
+vim.keymap.set("n", "<leader>wl", "<C-w>l")

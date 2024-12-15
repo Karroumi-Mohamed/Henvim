@@ -86,4 +86,7 @@ return require('packer').startup(function(use)
 
         "ngtuonghy/live-server-nvim"
     }
+    use('tpope/vim-dadbod')
+    use('kristijanhusak/vim-dadbod-ui')
+    use('kristijanhusak/vim-dadbod-completion')
 end)
