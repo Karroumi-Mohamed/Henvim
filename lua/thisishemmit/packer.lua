@@ -81,4 +81,9 @@ return require('packer').startup(function(use)
         'kevinhwang91/nvim-ufo',
         requires = 'kevinhwang91/promise-async'
     }
+    use {
+
+
+        "ngtuonghy/live-server-nvim"
+    }
 end)
