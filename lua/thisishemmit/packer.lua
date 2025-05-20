@@ -44,6 +44,8 @@ return require('packer').startup(function(use)
     use("tpope/vim-fugitive")
     use("nvim-treesitter/nvim-treesitter-context");
 
+    use ('mfussenegger/nvim-jdtls')
+
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
@@ -87,6 +89,7 @@ return require('packer').startup(function(use)
         "ngtuonghy/live-server-nvim"
     }
     use('tpope/vim-dadbod')
+    use('tpope/vim-surround')
     use('kristijanhusak/vim-dadbod-ui')
     use('kristijanhusak/vim-dadbod-completion')
 end)

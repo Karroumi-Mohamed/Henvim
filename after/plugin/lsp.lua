@@ -19,7 +19,6 @@ lspconfig.gleam.setup({
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver',
     'tailwindcss',
     -- for react, html, tsx, tsx html tags
     'html',
