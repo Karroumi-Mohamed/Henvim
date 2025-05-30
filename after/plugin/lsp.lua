@@ -1,65 +1,33 @@
 local lsp = require("lsp-zero")
 local lspconfig = require("lspconfig")
+
+-- Setup mason first
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'tailwindcss',
+        'html',
+        'lua_ls',
+        'clangd',
+    },
+})
+
+-- Configure individual servers
 lspconfig.clangd.setup({})
 lspconfig.lua_ls.setup({})
 lspconfig.gleam.setup({
     cmd = { "gleam", "lsp" },
     filetypes = { "gleam" },
     root_dir = lspconfig.util.root_pattern("gleam.toml"),
-    -- change to showing diagnostic (error, warning, hint, info) inside the floating window when leader+vv
     on_attach = function(client, bufnr)
         vim.keymap.set("n", "<leader>vv", function() vim.diagnostic.open_float() end, { buffer = bufnr, remap = false })
     end,
     settings = {
-        gleam = {
-            -- add your gleam settings here
-        }
-    }
-})
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-    'tailwindcss',
-    -- for react, html, tsx, tsx html tags
-    'html',
-})
--- Fix Undefined global 'vim'
-lsp.nvim_workspace()
-
-
-local cmp = require('cmp')
-cmp.setup.filetype({'sql', 'mysql'}, {
-    sources = {
-        { name = 'vim-dadbod-completion' },
-        { name = 'buffer' },
+        gleam = {}
     }
 })
 
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-})
-
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
-})
-
+-- Setup lsp-zero v3
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
@@ -75,7 +43,32 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
+-- Configure completion
+local cmp = require('cmp')
+cmp.setup({
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+        { name = 'luasnip' },
+    },
+mapping = cmp.mapping.preset.insert({
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Add this line
+    ['<C-Space>'] = cmp.mapping.complete(),
+}),
+})
+
+-- SQL completion
+cmp.setup.filetype({'sql', 'mysql'}, {
+    sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+    }
+})
+
 vim.diagnostic.config({
     virtual_text = true
 })
