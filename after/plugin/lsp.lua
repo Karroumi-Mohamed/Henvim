@@ -1,5 +1,6 @@
 local lsp = require("lsp-zero")
 local lspconfig = require("lspconfig")
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Setup mason first
 require('mason').setup({})
@@ -9,6 +10,7 @@ require('mason-lspconfig').setup({
         'html',
         'lua_ls',
         'clangd',
+        'ts_ls',
     },
 })
 
