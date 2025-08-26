@@ -55,3 +55,6 @@ vim.keymap.set("n", "<leader>wj", "<C-w>j")
 vim.keymap.set("n", "<leader>wk", "<C-w>k")
 vim.keymap.set("n", "<leader>wh", "<C-w>h")
 vim.keymap.set("n", "<leader>wl", "<C-w>l")
+
+vim.keymap.set("n", "<leader>ww", "<C-w>w") -- This will allow me to cycle through the windows with leader+ww
+vim.keymap.set("n", "<leader>r", "<cmd>!javac % && java %:t:r<CR>")
