@@ -1,6 +1,7 @@
-local lspconfig = require("lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.emmet_language_server.setup({
+vim.lsp.config('emmet_language_server', {
+  capabilities = capabilities,
   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
   -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
   -- **Note:** only the options listed in the table are supported.
@@ -25,3 +26,5 @@ lspconfig.emmet_language_server.setup({
     variables = {},
   },
 })
+
+vim.lsp.enable('emmet_language_server')

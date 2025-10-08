@@ -47,11 +47,11 @@ return require('packer').startup(function(use)
     use("tpope/vim-fugitive")
     use("nvim-treesitter/nvim-treesitter-context");
 
-    use ('mfussenegger/nvim-jdtls')
+    use('mfussenegger/nvim-jdtls')
 
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',  -- Change from 'v2.x' to 'v3.x'
+        branch = 'v3.x', -- Change from 'v2.x' to 'v3.x'
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
@@ -96,4 +96,7 @@ return require('packer').startup(function(use)
     use('tpope/vim-surround')
     use('kristijanhusak/vim-dadbod-ui')
     use('kristijanhusak/vim-dadbod-completion')
+    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+    end }
 end)
